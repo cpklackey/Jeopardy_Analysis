@@ -25,15 +25,32 @@ the number of answers to 5168.  This still accounted for 40% of the total questi
 My aim was to extract the most relevant keywords from a give set of questions for a particular answer.  I tested out newer types of models: yake, rake,
 spacy entity recognition, and suma. I decided to take a deep dive into the yake extraction model and tested the model out with different hyperparameters,
 notably its de-duplication threshold and max_words parameters.  Through statistical analysis using a manufactured scoring system and 2 sample T-Testing, I decided on a
-final model.
+final model and built an online dashboard to display the results.
 
 ### Conclusions and Recommendations
 
-The final step for this project will be to run the final model on our 5168 common answers and build a word cloud dashboard.
-I will also explain in more detail how the yake model works.
-Right now I can confidently say that with the model I chose, given a set of keywords extracted for an answer, that particular set of keywords will be unique to our answer.
-That is, the same set will not be extracted from any other answer.
+-- We built a model using YAKE to extract keywords for frequently occurring Jeopardy answers and can confidently say that with the model we chose, given a set of keywords we extracted for an answer, that set of keywords will be unique to our answer.
+
+-- We also built an online dashboard where word clouds of the keywords can be generated for any of the top answers we chose. In the future, this can be continually updated with current Jeopardy data as all show data can be scraped directly from the Jeopardy archives.
+
+-- Some of the key advantages of the Yake Model is that it is corpus, domain, and language independent. It solely relies on the statistical features of text.
+
+-- Yake also has built in pre-processing (i.e., removing stopwords), de-duplication, and scaling.
+
+-- Yake not only returns keywords but an individual score and ranking for each keyword.
+
+-- Some of the key features of words that Yake uses for scoring are: Casing, Word Position (in relation to the document), Word Frequency, Word Relatedness to Context(number of different terms that occur before and after), and WordDifSentence(frequency of occurrences in different sentences).
+
+-- In consideration of our model, we preserved casing and sentence structure when we prepared our text.
+
+On a final note, this Jeopardy dataset is a rich and robust set of data and there is certainly much more that can be explored. In my process here, I really learned the value of keyword extraction and natural language processing in general and why these are so important and relevant to Data Science today.
+
 
 ### Link to Jupyter Workbook:
 
  [`Jeopardy_Analysis`](./Jeopardy.ipynb)
+
+
+### Link to Online Dashboard:
+
+https://share.streamlit.io/cpklackey/jeopardy-dashboard/main/Jeopardy_Flash_Cards.py
